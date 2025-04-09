@@ -20,6 +20,8 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
+      /* Increased base font size */
+      font-size: 16px;
     }
 
     #chat-container {
@@ -35,40 +37,41 @@
     #chat-header {
       display: flex;
       align-items: center;
-      padding: 10px 15px;
+      padding: 15px 20px; /* Increased padding */
       background: #f9f9f9;
       border-bottom: 1px solid #eee;
-      height: 60px;
+      height: 80px; /* Increased header height */
     }
 
     #logo {
-      height: 32px;
-      margin-right: 10px;
+      height: 45px; /* Increased logo size */
+      margin-right: 15px; /* Increased margin */
     }
 
     #header-title {
-      font-size: 1.1rem;
+      font-size: 1.5rem; /* Increased font size */
       font-weight: 600;
       color: #333;
     }
 
     #chat {
       flex: 1;
-      padding: 15px;
+      padding: 20px; /* Increased padding */
       overflow-y: auto;
       background-color: #f5f7fa;
     }
 
     .message {
-      margin: 8px 0;
-      padding: 10px 14px;
+      margin: 10px 0; /* Increased margin */
+      padding: 12px 16px; /* Increased padding */
       border-radius: 18px;
-      line-height: 1.4;
+      line-height: 1.5; /* Increased line height */
       word-wrap: break-word;
       animation: fadeIn 0.3s ease;
       display: inline-block;
       max-width: 80%;
       min-width: 40px;
+      font-size: 1.05rem; /* Increased font size */
     }
 
     @keyframes fadeIn {
@@ -79,7 +82,7 @@
     .message-container {
       width: 100%;
       display: flex;
-      margin-bottom: 8px;
+      margin-bottom: 12px; /* Increased margin */
     }
 
     .user-container {
@@ -105,18 +108,19 @@
 
     #input-area {
       display: flex;
-      padding: 10px 15px;
-      gap: 8px;
+      padding: 15px 20px; /* Increased padding */
+      gap: 10px; /* Increased gap */
       background: #f9f9f9;
       border-top: 1px solid #eee;
+      margin-top: 20px; /* Added space between messages and input area */
     }
 
     input[type="text"] {
       flex: 1;
-      padding: 12px;
+      padding: 14px; /* Increased padding */
       border: 1px solid #ddd;
       border-radius: 25px;
-      font-size: 16px;
+      font-size: 1.05rem; /* Increased font size */
       transition: border 0.3s ease;
     }
 
@@ -129,12 +133,13 @@
       background-color: #7e57c2;
       color: white;
       border: none;
-      padding: 12px 20px;
+      padding: 14px 24px; /* Increased padding */
       border-radius: 25px;
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: 600;
       white-space: nowrap;
+      font-size: 1.05rem; /* Increased font size */
     }
 
     button:hover {
@@ -155,19 +160,19 @@
       }
       
       #chat-header {
-        padding: 15px 20px;
+        padding: 18px 25px; /* Increased padding */
       }
       
       #logo {
-        height: 40px;
+        height: 50px; /* Increased logo size */
       }
       
       #header-title {
-        font-size: 1.2rem;
+        font-size: 1.6rem; /* Increased font size */
       }
       
       #chat {
-        padding: 20px;
+        padding: 25px; /* Increased padding */
       }
       
       .message {
