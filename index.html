@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chatbot</title>
   <style>
-        body {
+    body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #e0c3fc, #8ec5fc); /* Soft purple gradient */
+      background: linear-gradient(to right, #e0c3fc, #8ec5fc);
       margin: 0;
       padding: 0;
       display: flex;
@@ -45,14 +45,14 @@
 
     .user {
       margin-left: auto;
-      background-color: #b388ff; /* Light purple */
+      background-color: #b388ff;
       color: #fff;
       text-align: right;
     }
 
     .bot {
       margin-right: auto;
-      background-color: #ffcc80; /* Orangish tone */
+      background-color: #ffcc80;
       color: #4e2800;
       text-align: left;
     }
@@ -73,7 +73,7 @@
     }
 
     button {
-      background-color: #7e57c2; /* Purple button */
+      background-color: #7e57c2;
       color: white;
       border: none;
       padding: 12px 20px;
@@ -99,7 +99,7 @@
   <script>
     const chat = document.getElementById("chat");
     const input = document.getElementById("user-input");
-
+  
     function appendMessage(sender, text) {
       const div = document.createElement("div");
       div.className = `message ${sender}`;
@@ -107,44 +107,37 @@
       chat.appendChild(div);
       chat.scrollTop = chat.scrollHeight;
     }
-
+  
     async function sendMessage() {
       const text = input.value.trim();
       if (!text) return;
-
+  
       appendMessage("user", text);
       input.value = "";
-
+  
       try {
-        const response = await fetch("https://dialogflow.googleapis.com/v2/projects/hope-paaf/agent/sessions/123456789:detectIntent", {
+        const response = await fetch("http://localhost:5000/chat", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer ya29.c.c0ASRK0Gb9fXcwlfPItu1SyZQV5Mlkp4odhVPb37DqFs6nIyeo_yxtHVNYvJzer0Y9jWX5sxmX2dlFMWNeTVaPGKbWNGqpreqpnti4qTw3rS4gQiT4pde9KurgMFUMRu-q2fyxHxBsKastm6Y4Jc6LtmOXwVM5b_e3YyRcvFrZB--eLPLd23ApJsLzLXyY3CkFN_r9AAhZhyGQaqp9BackS6qDMNckKsSbYkEi0IfZYzQRP35zwFkV841Lz5R17-Z0GCVOrMyNxgIRd8u3LkZnDu9OzQf9hTRrFILoqFE77ywq5-MUXdY56_reA5beXfyMNXyY1gPV2Yy3dHA6twDWiIAAktoVSHZffGimO67LnZaAtusPK-01jOnYCQrja-aZ4HS1D08E400D8ub3o-aY76tdMjb_2w0nJ0-nBrbSerJsvYri35-aUjQlmRb8UMMUsywssrStjoe6zg-ckFeXV1lgRYukWpm-3RYvmZIRzWVF8mIp2Qsu6QbQnY1xk4aO2z0wkveIqJkifYz-261ZQ_J-xexo71ythR75S1hWeMoorak-4r5m_SoW60Z2_I2OUuqz6-h_mMag7-UYO-RBXVhIJ3_IhVBMjeaZO4Vnk-mlSO2X8RMhZaOk4zj-tF_v6fWmc7t7eWlcBsB6kwBzZzwsWf_caqr93I2Mq2FoYl6339ncW5ftj5FBdOuJ60U8fQzi02OiQlIJwR-17jjipgUlMj3FQjwJ7Ud6QIvngp1Beh21ciwXon8MgUw8Wl2IO8_gnF5wMhlh3ymuB1z5Yg-s2hX5OlOiiB1ynmzpp0uqcOt7JvdWOQdV7lb0XFuXIy4RFR5avSXwviWrg7xJu72JWWpfYzO7iI4cb1abF5cQzupatjSgrzwaRFf5mrF2UWQuc5yYjlRYSf_fU9Zssvi9__hIgaadl3cvmQstMUdp-q4YMbFI4sVbJzmXn9BQuuwQJqYY7xzaB0Mw7Qocs29O09FSzV03asUMlp3SexYfzl_Q5sYsfI8"
+            "Content-Type": "application/json"
           },
-          body: JSON.stringify({
-            queryInput: {
-              text: {
-                text: text,
-                languageCode: "en-US"
-              }
-            }
-          })
+          body: JSON.stringify({ message: text })
         });
-
+  
         const data = await response.json();
-        const reply = data.queryResult?.fulfillmentText || "(No response)";
-        appendMessage("bot", reply);
+        appendMessage("bot", data.reply || "(No response)");
       } catch (err) {
-        appendMessage("bot", "Error contacting the bot.");
+        appendMessage("bot", "⚠️ Error contacting the server.");
+        console.error(err);
       }
     }
-
+  
     input.addEventListener("keypress", function(event) {
       if (event.key === "Enter") {
         sendMessage();
       }
     });
   </script>
+  
 </body>
 </html>
